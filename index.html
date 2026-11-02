@@ -1,104 +1,120 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>بازی ایموجو</title>
-    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="style.css">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>ایموجی کوئیز</title>
+
+<link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
-    <div id="main-menu" class="screen active">
-        <div class="top-bar">
-            <div class="coin-display"><span class="coin-icon">🪙</span> <span id="menu-coins">270</span></div>
-        </div>
-        <div class="menu-content">
-            <div class="logo-area">
-                <div class="logo-emojis">
-                    <span>🕵️</span><span>🔍</span><span>🧩</span>
-                </div>
-                <h1>ایموجو</h1>
-                <p>بازی حدس کلمه با ایموجی‌ها</p>
-            </div>
-            <button id="btn-start" class="btn-primary">شروع بازی</button>
-            <div class="menu-buttons">
-                <button class="btn-secondary">راهنمای بازی <span class="icon">ⓘ</span></button>
-                <button class="btn-secondary">فروشگاه سکه <span class="icon">🛒</span></button>
-            </div>
-        </div>
-    </div>
+<!-- صفحه اصلی -->
 
-    <div id="chapters-screen" class="screen">
-        <div class="header">
-            <h2>فصل‌های بازی</h2>
-            <button class="btn-back" onclick="showScreen('main-menu')">➔</button>
-        </div>
-        <div class="chapters-grid" id="chapters-grid"></div>
-    </div>
+<section id="home" class="screen active">
 
-    <div id="levels-screen" class="screen">
-        <div class="header">
-            <button class="btn-back" onclick="showScreen('chapters-screen')">➔</button>
-            <h2 id="level-header-title">فصل ۱ - مراحل</h2>
-        </div>
-        <div class="progress-container">
-            <div class="progress-text">
-                <span>پیشرفت کل:</span>
-                <span id="progress-text">5 از 25 مرحله حل شده</span>
-            </div>
-            <div class="progress-bar">
-                <div class="progress-fill" id="progress-fill"></div>
-            </div>
-        </div>
-        <div class="levels-grid" id="levels-grid"></div>
-    </div>
+<div class="coins">🪙 <span id="coinCount">270</span></div>
 
-    <div id="game-screen" class="screen">
-        <div class="game-header">
-            <button class="btn-back" onclick="showScreen('levels-screen')">➔</button>
-            <div class="level-info">
-                <span id="game-chapter">فصل 1</span>
-                <span id="game-level">مرحله 1</span>
-            </div>
-            <div class="coin-display"><span class="coin-icon">🪙</span> <span id="game-coins">270</span></div>
-        </div>
+<h1>ایموجی کوئیز</h1>
 
-        <div class="game-main">
-            <div class="emoji-board" id="emoji-question"></div>
-            
-            <div class="hints-row">
-                <button class="btn-hint" onclick="buyHint('reveal')">
-                    <span>نمایش جواب</span>
-                    <span class="cost">130 🪙</span>
-                </button>
-                <button class="btn-hint" onclick="buyHint('remove')">
-                    <span>حذف اضافی</span>
-                    <span class="cost">65 🪙</span>
-                </button>
-                <button class="btn-hint" onclick="buyHint('letter')">
-                    <span>حرف اول</span>
-                    <span class="cost">45 🪙</span>
-                </button>
-            </div>
+<p>بازی حدس کلمه با ایموجی‌ها</p>
 
-            <div class="answer-slots" id="answer-slots"></div>
-        </div>
+<button id="startBtn">شروع بازی</button>
 
-        <div class="keyboard" id="keyboard"></div>
-    </div>
+<div class="bottomBtns">
 
-    <div id="win-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-icon">🎉</div>
-            <h2>آفرین! درست حدس زدی</h2>
-            <p class="modal-subtitle">پاسخ صحیح:</p>
-            <div class="correct-answer" id="correct-answer-text"></div>
-            <div class="reward">+15 سکه جایزه 🪙</div>
-            <button class="btn-primary" onclick="nextLevel()">مرحله بعدی ➔</button>
-        </div>
-    </div>
+<button>راهنمای بازی</button>
 
-    <script src="script.js"></script>
+<button>فروشگاه</button>
+
+</div>
+
+</section>
+
+<!-- فصل ها -->
+
+<section id="chapters" class="screen">
+
+<h2>فصل‌های بازی</h2>
+
+<div class="chapterGrid">
+
+<div class="chapter unlocked" data-chapter="1">فصل ۱</div>
+
+<div class="chapter locked">فصل ۲</div>
+
+<div class="chapter locked">فصل ۳</div>
+
+<div class="chapter locked">فصل ۴</div>
+
+</div>
+
+</section>
+
+<!-- مراحل -->
+
+<section id="levels" class="screen">
+
+<h2>فصل ۱</h2>
+
+<div id="levelGrid" class="levelGrid"></div>
+
+</section>
+
+<!-- بازی -->
+
+<section id="game" class="screen">
+
+<div class="topBar">
+
+<div>🪙 <span id="gameCoins">270</span></div>
+
+<div id="stageTitle">مرحله ۱</div>
+
+</div>
+
+<div id="emojiBox" class="emojiBox"></div>
+
+<div id="answerBoxes" class="answerBoxes"></div>
+
+<div class="helpRow">
+
+<button id="firstHint">حرف اول</button>
+
+<button id="removeHint">حذف اضافی</button>
+
+<button id="showAnswer">نمایش جواب</button>
+
+</div>
+
+<div id="letters" class="letters"></div>
+
+</section>
+
+<!-- برد -->
+
+<div id="winPopup" class="popup hidden">
+
+<div class="popupCard">
+
+<h2>🎉 آفرین!</h2>
+
+<p>پاسخ درست بود.</p>
+
+<p id="correctAnswer"></p>
+
+<p>+۱۵ سکه</p>
+
+<button id="nextLevel">مرحله بعدی</button>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
 </body>
-</html>
+    </html>

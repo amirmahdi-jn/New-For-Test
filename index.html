@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#160d2c">
+  <title>ایموجی کوئیز</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="splash" class="splash">
+    <div class="splash-logo"><span class="logo-emoji">🧩</span></div>
+    <h1>ایموجی کوئیز</h1>
+    <p>حدس بزن، سکه بگیر، پیشرفت کن!</p>
+    <div class="loading-track"><span></span></div>
+  </div>
+
+  <div class="app-shell">
+    <header class="topbar">
+      <button class="icon-btn" id="settingsBtn" aria-label="تنظیمات">⚙</button>
+      <div class="brand"><span>🧩</span><strong>ایموجی کوئیز</strong></div>
+      <div class="coin-counter" aria-label="موجودی سکه">
+        <span id="coinCount">270</span>
+        <span class="coin coin-small" aria-hidden="true"><span>$</span></span>
+      </div>
+    </header>
+
+    <main>
+      <section id="homePage" class="page active">
+        <div class="hero-card">
+          <div class="hero-glow"></div>
+          <span class="eyebrow">به چالش خوش آمدی</span>
+          <h1>فقط با دیدن ایموجی‌ها<br><em>جواب رو حدس بزن!</em></h1>
+          <p>ذهنت رو به چالش بکش و مرحله‌ها رو یکی‌یکی فتح کن.</p>
+          <div class="hero-art"><span>🧠</span><span>✨</span><span>🎯</span></div>
+          <button class="primary-btn" id="playBtn">شروع بازی <span>←</span></button>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-card"><span class="stat-icon">🏆</span><b id="completedCount">۰</b><small>مرحله گذرانده</small></div>
+          <div class="stat-card"><span class="stat-icon">🪙</span><b id="homeCoins">۲۷۰</b><small>سکه‌های من</small></div>
+        </div>
+        <button class="wide-card" id="chaptersBtn"><span class="wide-icon">🗺️</span><span><b>انتخاب فصل</b><small>ماجراجویی در فصل‌های مختلف</small></span><span class="chevron">‹</span></button>
+        <button class="wide-card" id="shopBtn"><span class="wide-icon">🛍️</span><span><b>فروشگاه سکه</b><small>سکه‌ها و راهنماهای بیشتر</small></span><span class="chevron">‹</span></button>
+      </section>
+
+      <section id="chaptersPage" class="page">
+        <div class="page-heading"><button class="back-btn" data-back="homePage">→</button><div><h2>انتخاب فصل</h2><p>فصل مورد علاقه‌ات رو انتخاب کن</p></div></div>
+        <div id="chapterList" class="chapter-list"></div>
+      </section>
+
+      <section id="levelsPage" class="page">
+        <div class="page-heading"><button class="back-btn" data-back="chaptersPage">→</button><div><h2 id="levelsTitle">مرحله‌ها</h2><p>مرحله بعدی رو باز کن!</p></div></div>
+        <div id="levelGrid" class="level-grid"></div>
+      </section>
+
+      <section id="gamePage" class="page">
+        <div class="game-heading">
+          <button class="back-btn" data-back="levelsPage">→</button>
+          <div class="level-label"><small id="chapterLabel">فصل اول</small><b id="levelLabel">مرحله ۱</b></div>
+          <div class="progress-pill"><span id="progressText">۱/۵</span></div>
+        </div>
+        <div class="progress-line"><span id="progressBar"></span></div>
+        <div class="question-card">
+          <span class="question-tag">معنی این ایموجی‌ها چیه؟</span>
+          <div id="emojiQuestion" class="emoji-question">🌙 ⭐</div>
+          <p>جواب رو از حروف پایین بساز</p>
+        </div>
+        <div id="answerSlots" class="answer-slots"></div>
+        <div id="letterBank" class="letter-bank"></div>
+        <div class="hint-row">
+          <button class="hint-btn" data-hint="first"><span>🔤</span><b>یک حرف</b><small>۴۵ سکه</small></button>
+          <button class="hint-btn" data-hint="remove"><span>🧹</span><b>حذف حروف</b><small>۶۵ سکه</small></button>
+          <button class="hint-btn" data-hint="solve"><span>💡</span><b>حل سؤال</b><small>۱۳۰ سکه</small></button>
+        </div>
+        <button class="secondary-btn" id="clearAnswer">پاک کردن پاسخ</button>
+      </section>
+
+      <section id="shopPage" class="page">
+        <div class="page-heading"><button class="back-btn" data-back="homePage">→</button><div><h2>فروشگاه سکه</h2><p>برای راهنمایی بیشتر سکه جمع کن</p></div></div>
+        <div class="shop-feature"><div class="coin coin-large"><span>$</span></div><h3>سکه‌های طلایی</h3><p>با حل درست سؤال‌ها سکه دریافت کن.</p></div>
+        <div class="shop-note">در این نسخه می‌تونی با بازی کردن سکه به دست بیاری.</div>
+      </section>
+    </main>
+  </div>
+
+  <div id="winModal" class="modal" aria-hidden="true">
+    <div class="modal-card win-card">
+      <div class="confetti-layer" id="confettiLayer"></div>
+      <div class="win-cup">🏆</div><h2>آفرین! درست حدس زدی</h2><p>یک مرحله دیگه رو با موفقیت گذروندی.</p>
+      <div class="reward"><span>+۱۵</span><div class="coin coin-medium"><span>$</span></div><small>سکه جایزه</small></div>
+      <button class="primary-btn" id="nextBtn">ادامه <span>←</span></button>
+    </div>
+  </div>
+
+  <div id="settingsModal" class="modal" aria-hidden="true">
+    <div class="modal-card settings-card">
+      <button class="modal-close" data-close="settingsModal">×</button>
+      <h2>تنظیمات بازی</h2>
+      <label class="setting-line"><span>موسیقی پس‌زمینه</span><input type="checkbox" id="musicToggle"></label>
+      <label class="setting-line"><span>صداهای بازی</span><input type="checkbox" id="soundToggle" checked></label>
+      <label class="volume-line">بلندی موسیقی <input id="musicVolume" type="range" min="0" max="100" value="35"></label>
+      <label class="volume-line">بلندی صداها <input id="soundVolume" type="range" min="0" max="100" value="70"></label>
+      <p class="settings-tip">برای پخش موسیقی، ابتدا یک بار روی صفحه لمس کن.</p>
+    </div>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>
